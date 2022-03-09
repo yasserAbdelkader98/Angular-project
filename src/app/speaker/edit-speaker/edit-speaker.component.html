@@ -1,0 +1,36 @@
+<div class="form-control d-flex flex-column w-25 m-auto">
+  <label>User Name</label>
+  <input [(ngModel)]="speaker.userName" type="text" />
+
+  <label>PassWord</label>
+  <input [(ngModel)]="speaker.password" type="text" />
+
+  <label>Email</label>
+  <input [(ngModel)]="speaker.email" type="email" />
+
+  <label>Address</label>
+  <input [(ngModel)]="speaker.address" type="text" />
+
+  <label>Role</label>
+  <select [(ngModel)]="speaker.role">
+    <option>admin</option>
+    <option>speaker</option>
+  </select>
+
+  <label>Image</label>
+  <select [(ngModel)]="speaker.image">
+    <option>./assets/images/1.jpg</option>
+    <option>./assets/images/2.jpg</option>
+    <option>./assets/images/3.jpg</option>
+    <option>./assets/images/4.jpg</option>
+    <option>./assets/images/5.jpg</option>
+    <option>./assets/images/6.jpg</option>
+    <option>./assets/images/7.jpg</option>
+    <option>./assets/images/8.jpg</option>
+    <option>./assets/images/9.jpg</option>
+    <option>./assets/images/10.jpg</option>
+  </select>
+</div>
+<button class="btn btn-success d-flex m-auto" (click)="saveEdit()">
+  Save Edit
+</button>

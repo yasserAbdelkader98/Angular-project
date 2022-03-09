@@ -1,0 +1,17 @@
+<div class="form-control w-25 d-flex flex-column m-auto">
+  <label>User Name</label>
+  <input [(ngModel)]="student.userName" type="text" />
+
+  <label>Password</label>
+  <input [(ngModel)]="student.password" type="text" />
+
+  <label>Email</label>
+  <input [(ngModel)]="student.email" type="text" />
+
+  <label>Image</label>
+  <input (input)="onFileChange($event)" type="file" />
+
+  <button class="btn btn-dark" (click)="saveNewStudent()">
+    Save New Student
+  </button>
+</div>

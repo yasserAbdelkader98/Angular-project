@@ -1,0 +1,16 @@
+@media screen and (min-width: 800px) {
+  table {
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+    font-weight: bold;
+  }
+  button {
+    margin: 20px auto;
+    text-align: center;
+  }
+}
+
+button {
+  font-size: 12px;
+}
