@@ -1,53 +1,61 @@
-<button class="btn btn-dark d-flex" (click)="showList()">
-  Show All Speakers List
-</button>
-
-<table *ngIf="allSpeakers.length > 0" class="table table-dark">
-  <thead>
-    <tr>
-      <td>Id</td>
-      <td>User Name</td>
-      <!-- <td>Password</td> -->
-      <td>Email</td>
-      <td>Address</td>
-      <td>Role</td>
-      <td>Image</td>
-      <td>Operations</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of allSpeakers">
-      <td>{{ item._id }}</td>
-      <td>{{ item.userName }}</td>
-      <!-- <td>{{ item.password }}</td> -->
-      <td>{{ item.email }}</td>
-      <td>{{ item.address }}</td>
-      <td>{{ item.role }}</td>
-      <td>
-        <img
-          style="border-radius: 50%"
-          width="75"
-          height="75"
-          [src]="item.image"
-        />
-      </td>
-      <td>
-        <div class="d-flex flex-row">
-          <button (click)="speakerDetailsId = item._id" class="btn btn-primary">
-            Details
-          </button>
-          <button (click)="speakerEditId = item._id" class="btn btn-success">
-            Update
-          </button>
-          <button (click)="speakerDeleteId = item._id" class="btn btn-danger">
-            Delete
-          </button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<app-speaker-details [speakerId]="speakerDetailsId"></app-speaker-details>
-<app-delete-speaker [deleteId]="speakerDeleteId"></app-delete-speaker>
-<app-edit-speaker [editId]="speakerEditId"></app-edit-speaker>
+<div class="container">
+  <button [routerLink]="['/speakers', 'add']" class="btn btn-primary">
+    Add New Speaker
+  </button>
+  <table *ngIf="allSpeakers.length > 0" class="table table-dark">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>User Name</td>
+        <td>Email</td>
+        <td>Address</td>
+        <td>Role</td>
+        <td>Image</td>
+        <td>Operations</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allSpeakers">
+        <td>{{ item._id }}</td>
+        <td>{{ item.userName }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.role }}</td>
+        <td>
+          <img
+            style="border-radius: 50%"
+            width="75"
+            height="75"
+            src="http://localhost:8080/images/{{ item.image }}"
+          />
+        </td>
+        <td>
+          <div class="d-flex flex-row">
+            <button
+              [routerLink]="['/speakers', 'details', item._id]"
+              class="btn btn-primary"
+            >
+              Details
+            </button>
+            <button
+              [routerLink]="['/speakers', 'edit', item._id]"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              [routerLink]="['/speakers', 'delete', item._id]"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
+<!-- <app-speaker-details [speakerId]="speakerDetailsId"></app-speaker-details> -->
+<!-- <app-delete-speaker [deleteId]="speakerDeleteId"></app-delete-speaker> -->
+<!-- <app-edit-speaker [editId]="speakerEditId"></app-edit-speaker>  -->

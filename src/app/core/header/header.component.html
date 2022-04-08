@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <p class="navbar-brand my-1">LOGO</p>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            [routerLink]="['/home']"
+            routerLinkActive="active"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/about']"
+            routerLinkActive="active"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/contact']"
+            routerLinkActive="active"
+            >Contact Us</a
+          >
+        </li>
+      </ul>
+      <section class="d-flex">
+        <a
+          *ngIf="authServ.isLogged"
+          class="btn btn-outline-success m-1"
+          routerLinkActive="active"
+          [routerLink]="['/speakers']"
+          >SPEAKERS</a
+        >
+        <a
+          *ngIf="authServ.isLogged"
+          class="btn btn-outline-success m-1"
+          routerLinkActive="active"
+          [routerLink]="['/students']"
+          >STUDENTS</a
+        >
+        <a
+          *ngIf="!authServ.isLogged"
+          class="btn btn-outline-success m-1"
+          routerLinkActive="active"
+          [routerLink]="['/login']"
+          >LOGIN</a
+        >
+        <a
+          *ngIf="!authServ.isLogged"
+          class="btn btn-outline-success m-1"
+          routerLinkActive="active"
+          [routerLink]="['/register']"
+          >Register</a
+        >
+        <a
+          *ngIf="authServ.isLogged"
+          class="btn btn-outline-success m-1"
+          routerLinkActive="active"
+          (click)="logout()"
+          [routerLink]="['/logout']"
+          >LOGOUT</a
+        >
+      </section>
+    </div>
+  </div>
+</nav>

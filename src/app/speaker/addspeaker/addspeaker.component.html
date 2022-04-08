@@ -1,39 +1,88 @@
-<div class="form-control d-flex flex-column w-25 m-auto">
-  <label>ID</label>
-  <input [(ngModel)]="speaker._id" type="number" />
+<form #addSpeaker="ngForm" (submit)="save()">
+  <div class="form-control d-flex flex-column w-25 m-auto">
+    <!-- start userName -->
+    <label>User Name</label>
+    <input
+      type="text"
+      name="userName"
+      [(ngModel)]="speaker.userName"
+      #userName="ngModel"
+      minlength="3"
+      required
+    />
+    <p *ngIf="userName.errors?.['minlength'] && userName.touched">
+      Minimum Characters is three
+    </p>
+    <p *ngIf="userName.errors?.['required']  && userName.touched">
+      this field can't be empty
+    </p>
 
-  <label>User Name</label>
-  <input [(ngModel)]="speaker.userName" type="text" />
+    <!-- start password -->
+    <label>Password</label>
+    <input
+      name="password"
+      type="password"
+      [(ngModel)]="speaker.password"
+      #password="ngModel"
+      minlength="5"
+      required
+    />
+    <p *ngIf="password.errors?.['minlength'] && password.touched">
+      alphaNumeric Minimum Characters is five
+    </p>
+    <p *ngIf="password.errors?.['required']  && password.touched">
+      this field can't be empty
+    </p>
 
-  <label>PassWord</label>
-  <input [(ngModel)]="speaker.password" type="text" />
+    <!-- start email -->
+    <label>Email</label>
+    <input
+      name="email"
+      type="email"
+      [(ngModel)]="speaker.email"
+      #email="ngModel"
+      required
+      email
+    />
+    <p *ngIf="email.errors?.['email'] && email.touched">Email isn't valid</p>
+    <p *ngIf="email.errors?.['required']  && email.touched">
+      this field can't be empty
+    </p>
 
-  <label>Email</label>
-  <input [(ngModel)]="speaker.email" type="email" />
+    <!-- start address -->
+    <label>Address</label>
+    <input
+      type="text"
+      name="address"
+      [(ngModel)]="speaker.address"
+      #address="ngModel"
+      required
+    />
+    <p *ngIf="address.errors?.['required']  && address.touched">
+      this field can't be empty
+    </p>
 
-  <label>Address</label>
-  <input [(ngModel)]="speaker.address" type="text" />
+    <!-- start role -->
+    <label>Role</label>
+    <select name="role" [(ngModel)]="speaker.role" #role="ngModel" required>
+      <!-- <option>admin</option> -->
+      <option>speaker</option>
+    </select>
+    <p *ngIf="role.errors?.['required']  && role.touched">
+      this field can't be empty
+    </p>
 
-  <label>Role</label>
-  <select [(ngModel)]="speaker.role">
-    <option>admin</option>
-    <option>speaker</option>
-  </select>
+    <!-- start image -->
+    <label>Image</label>
+    <input name="image" type="file" (change)="onFileChange($event)" />
+  </div>
 
-  <label>Image</label>
-  <select [(ngModel)]="speaker.image">
-    <option>./assets/images/1.jpg</option>
-    <option>./assets/images/2.jpg</option>
-    <option>./assets/images/3.jpg</option>
-    <option>./assets/images/4.jpg</option>
-    <option>./assets/images/5.jpg</option>
-    <option>./assets/images/6.jpg</option>
-    <option>./assets/images/7.jpg</option>
-    <option>./assets/images/8.jpg</option>
-    <option>./assets/images/9.jpg</option>
-    <option>./assets/images/10.jpg</option>
-  </select>
-</div>
-<button class="btn btn-success d-flex m-auto" (click)="save()">
-  Save New Speaker
-</button>
+  <!-- button -->
+  <button
+    class="btn btn-success d-flex m-auto"
+    (click)="save()"
+    [disabled]="addSpeaker.invalid"
+  >
+    Save New Speaker
+  </button>
+</form>

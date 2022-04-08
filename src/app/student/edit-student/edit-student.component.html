@@ -1,0 +1,63 @@
+<form #updateStudent="ngForm">
+  <div class="form-control w-25 d-flex flex-column m-auto">
+    <label>User Name</label>
+    <input
+      type="text"
+      name="userName"
+      [(ngModel)]="student.userName"
+      #userName="ngModel"
+      minlength="3"
+      required
+    />
+    <p *ngIf="userName.errors?.['minlength'] && userName.touched">
+      Minimum Characters is three
+    </p>
+    <p *ngIf="userName.errors?.['required']  && userName.touched">
+      this field can't be empty
+    </p>
+
+    <!-- start password -->
+    <label>Password</label>
+    <input
+      name="password"
+      type="password"
+      [(ngModel)]="student.password"
+      #password="ngModel"
+      minlength="5"
+      required
+    />
+    <p *ngIf="password.errors?.['minlength'] && password.touched">
+      alphaNumeric Minimum Characters is five
+    </p>
+    <p *ngIf="password.errors?.['required']  && password.touched">
+      this field can't be empty
+    </p>
+
+    <!-- start email -->
+    <label>Email</label>
+    <input
+      name="email"
+      type="email"
+      [(ngModel)]="student.email"
+      #email="ngModel"
+      required
+      email
+    />
+    <p *ngIf="email.errors?.['email'] && email.touched">Email isn't valid</p>
+    <p *ngIf="email.errors?.['required']  && email.touched">
+      this field can't be empty
+    </p>
+
+    <!-- start image -->
+    <label>Image</label>
+    <input (input)="onFileChange($event)" type="file" />
+
+    <button
+      class="btn btn-success"
+      (click)="editStudent()"
+      [disabled]="updateStudent.invalid"
+    >
+      Confirm Edit
+    </button>
+  </div>
+</form>

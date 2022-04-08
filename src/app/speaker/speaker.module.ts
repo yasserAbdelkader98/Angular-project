@@ -6,6 +6,7 @@ import { SpeakerDetailsComponent } from './speaker-details/speaker-details.compo
 import { EditSpeakerComponent } from './edit-speaker/edit-speaker.component';
 import { DeleteSpeakerComponent } from './delete-speaker/delete-speaker.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     EditSpeakerComponent,
     DeleteSpeakerComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   exports: [
     SpeakerListComponent,
     AddspeakerComponent,

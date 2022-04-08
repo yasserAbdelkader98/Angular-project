@@ -1,0 +1,14 @@
+input.ng-invalid.ng-touched {
+  color: red;
+}
+
+input.ng-valid {
+  color: green;
+  font-weight: bold;
+}
+
+p {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+}

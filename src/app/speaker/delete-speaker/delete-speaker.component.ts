@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpeakerService } from 'src/app/speaker.service';
 
 @Component({
@@ -12,16 +13,24 @@ import { SpeakerService } from 'src/app/speaker.service';
   templateUrl: './delete-speaker.component.html',
   styleUrls: ['./delete-speaker.component.css'],
 })
-export class DeleteSpeakerComponent implements OnInit, OnChanges {
+export class DeleteSpeakerComponent implements OnInit {
   @Input() deleteId = 0;
-  constructor(public speakerServ: SpeakerService) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['deleteId'].isFirstChange()) {
-      this.speakerServ.deleteSpeaker(this.deleteId).subscribe({
-        next: (data) => console.log(data),
-      });
-    }
-  }
+  constructor(
+    public speakerServ: SpeakerService,
+    public router: Router,
+    public AC: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.AC.params.subscribe({
+      next: (data) => {
+        this.speakerServ.deleteSpeaker(data['id']).subscribe({
+          next: (data) => {
+            this.router.navigate(['/speakers']);
+            console.log(data);
+          },
+        });
+      },
+    });
+  }
 }
